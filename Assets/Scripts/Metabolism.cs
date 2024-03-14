@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Metabolism : MonoBehaviour
 {
-    public float energy = 100f;
+    public float Energy { get; private set; } = 100f;
+    public int Fe { get; private set; } = 0;
+    public int Mg { get; private set; } = 0;
+    public int N { get; private set; } = 0;
+    public int Si { get; private set; } = 0;
 
     public void UseEnergy()
     {
-        energy--;
+        Energy--;
         
     }
     IEnumerator StartMetabolism()
@@ -22,6 +26,15 @@ public class Metabolism : MonoBehaviour
         
     }
 
+    void TakeEnergy()
+    {
+        Energy++;
+        EventBus.ChangedEnergy();
+    }
+    private void Awake()
+    {
+        EventBus.OnPickUpFood.AddListener(TakeEnergy);
+    }
     private void Start()
     {
         StartCoroutine(StartMetabolism());

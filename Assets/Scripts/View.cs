@@ -9,7 +9,7 @@ public class View : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        EventBus.OnChangeEnergy.AddListener(() => { textEnergy.text = $"Energy:{metabolism.energy.ToString()}"; });
+        EventBus.OnChangeEnergy.AddListener(() => { textEnergy.text = $"Energy:{metabolism.Energy}"; });
     }
 
     // Update is called once per frame
